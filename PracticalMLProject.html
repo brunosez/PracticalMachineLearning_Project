@@ -1,3 +1,5 @@
+<html>
+<body>
 <p>Project for Practical Machine Learning course</p>
 <p>We comment ou R program, which is located in the same repo as</p>
 <p>We put it as a function, to be able to use arguments to choose the training file. In fact a simple script is sufficent.</p>
@@ -7,4 +9,5 @@
 <p>We use repeated cross validation to train our Random Forest algorithm.</p>
 <p>We use the parallel library Snow to parallelize the computation which takes around 40-50’. ‘’’cluster &lt;- makeCluster(2) registerDoSNOW(cluster)’’’</p>
 <p>Our Random Forest algo is limited to 100 trees. THe code used is ‘’’modFit&lt;-train(classe ~ ., data=projtrain2,method=“rf”, trControl= ctrl,prox=TRUE,metric=“ROC”,ntree=100)’’’ Finally we do some classical confusion matrix computation.</p>
-
+</body>
+</html>
