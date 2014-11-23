@@ -37,3 +37,23 @@ modFit<-train(classe ~ ., data=projtrain2,method="rf",
 ```
 
 Finally we do some classical confusion matrix computation.
+```
+Call:
+ randomForest(x = x, y = y, ntree = 100, mtry = param$mtry, proximity = TRUE) 
+               Type of random forest: classification
+                     Number of trees: 100
+No. of variables tried at each split: 41
+
+        OOB estimate of  error rate: 0.01%
+Confusion matrix:
+     A    B    C    D    E  class.error
+A 3912    0    0    0    0 0.0000000000
+B    0 2644    0    0    0 0.0000000000
+C    0    1 2400    0    0 0.0004164931
+D    0    0    0 2243    0 0.0000000000
+E    0    0    0    1 2537 0.0003940110
+```
+
+But in fact I get only 7/20 at the submission. It seems my model is not efficient ! :-((
+
+
