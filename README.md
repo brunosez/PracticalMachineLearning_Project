@@ -7,7 +7,7 @@ We comment ou R program, which is located in the same repo.
 We put it as a function, to be able to use arguments to choose the training file.
 In fact a simple script is sufficent.
 
-We choose to suppress some variable tha where computed from other.
+We choose to suppress some variable that where computed from other (e.g min or max).
 here is the code used to achieve this suppression :
 
 ```
