@@ -4,8 +4,8 @@ Project for Practical Machine Learning course
 
 We comment ou R program, which is located in the same repo.
 
-We put it as a function, to be able to use arguments to choose the training file.
-In fact a simple script is sufficent.
+This is a simple R script.
+(May be it lacks to declare some libraries)
 
 We choose to suppress some variable that where computed from other (e.g min or max).
 here is the code used to achieve this suppression :
