@@ -1,47 +1,31 @@
-PracticalMachineLearning_Project
-===============================
 
-PracticalMachineLearning_Project
+Project for Practical Machine Learning course
 
-#
-## Project ML
-## R Code
+We comment ou R program, which is located in the same repo as
 
-## Read data
-library(caret)
+We put it as a function, to be able to use arguments to choose the training file.
+In fact a simple script is sufficent.
 
-## Source of the dataset 
-## http://groupware.les.inf.puc-rio.br/har#dataset
+We choose to suppress some variable tha where computed from other.
+here is the code used to achieve this suppression :
 
-projtest<-read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv")
-
-projtrain<-read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv")
-
-dim(projtrain)
-dim(projtrain)
-id = 1:160
-for (i in id) {
-  if (names(projtrain)[i] != names(projtest)[i] ) {
-  print("values are different!") 
-  print(i)
-}
-}
-## on i = 160 gives a different value, it's ok because it is the class variable to be predicted.
-
-## select a subset of the variables
-##  following the explanation in the paper
-## http://groupware.les.inf.puc-rio.br/public/papers/2013.Velloso.QAR-WLE.pdf
-## we decide not to use all avg_ or var_ variable and all other stat or aggregated variables
-suppressed_features<-grep("var_*|avg_*|stddev_*|max_*|*amplitude_*|min_*|skewness_*|kurtosis_*", names(projtrain))
+'''suppressed_features<-grep("var_*|avg_*|stddev_*|max_*|*amplitude_*|min_*|skewness_*|kurtosis_*", names(projtrain))
 # this command will suppress 100 variables in the dataset.
-projtrain2<-projtrain[,-suppressed_features]
+projtrain2<-projtrain[,-suppressed_features]'''
 
-## test with Decision tree
-## All 20 id are predicted in class A
-createPartitionData()
+Same for the test set.
 
-# Random forest call
+We create a Data Partition in order to minimize the volume of data.
+In fact as we use cross validation later this data partition is useless.
 
-modFit<-train(classe ~ ., data=projtrain2,method="rf",prox=TRUE)
+We use repeated cross validation to train our Random Forest algorithm.
 
-predict<-predict(modFit,newdata=projtest)
+We use the parallel library Snow to parallelize the computation which takes around 40-50'.
+'''cluster <- makeCluster(2)
+registerDoSNOW(cluster)'''
+
+Our Random Forest algo is limited to 100 trees. THe code used is
+'''modFit<-train(classe ~ ., data=projtrain2,method="rf",
+              trControl= ctrl,prox=TRUE,metric="ROC",ntree=100)
+			  '''
+Finally we do some classical confusion matrix computation.
