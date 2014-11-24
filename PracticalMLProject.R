@@ -24,6 +24,11 @@ for (i in id) {
 }
 ## on i = 160 gives a different value, it's ok because it is the class variable to be predicted.
 
+## we suppress the column 1 to seven which are not relevant at our sense to predict the class of the exercise
+##X = sample number, col2 = user name  col 3& 4&5 timestamp, 6&7 are window of measures
+projtrain<-projtrain[,-c(1:7)]
+projtest<-projtest[,-c(1:7)]
+
 ## select a subset of the variables
 #  following the explanation in the paper
 ## http://groupware.les.inf.puc-rio.br/public/papers/2013.Velloso.QAR-WLE.pdf
