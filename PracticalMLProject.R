@@ -28,12 +28,15 @@ for (i in id) {
 #  following the explanation in the paper
 ## http://groupware.les.inf.puc-rio.br/public/papers/2013.Velloso.QAR-WLE.pdf
 ## we decide not to use all avg_ or var_ variable and all other stat or aggregated variables
+## kurtosis and skewness are suppressed because they are blank in the test set file. So it will no help
+##to classify with theses variables
 suppressed_features<-grep("var_*|avg_*|stddev_*|max_*|*amplitude_*|min_*|skewness_*|kurtosis_*", names(projtrain))
 # this command will suppress 100 variables in the dataset.
 projtrain2<-projtrain[,-suppressed_features]
 projtest2<-projtest[,-suppressed_features]
+
 ## test with Decision tree
-## All 20 id are predicted in class A
+## All 20 id are predicted in class A (it was because fist seven column, in particular x, was kept.
 
 inTrain<-createDataPartition(y=projtrain2[,1], p=0.7, list=FALSE)
 projtrain2<-projtrain2[inTrain,]
