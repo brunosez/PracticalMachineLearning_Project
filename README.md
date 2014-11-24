@@ -15,6 +15,7 @@ suppressed_features<-grep("var_*|avg_*|stddev_*|max_*|*amplitude_*|min_*|skewnes
 # this command will suppress 100 variables in the dataset.
 projtrain2<-projtrain[,-suppressed_features]
 ```
+Lack the suppress of first seven columns !!
 
 Same for the test set.
 
@@ -55,5 +56,9 @@ E    0    0    0    1 2537 0.0003940110
 ```
 
 But in fact I get only 7/20 at the submission. It seems my model is not efficient ! :-((
+I found my mistake : I kept the first seven column, that are just the line number, timestamp,
+ user name, and window tech params !
+ Now I guess, I can submit with 18/20 or more , after seeing some solutions from other students.
+ That explain my predict with all A...
 
 
